@@ -1,8 +1,10 @@
 { system ? builtins.currentSystem
+
+, kpkgs ? import ./dep/kpkgs { inherit system; }  # If you want a custom package set, pass it into
 , obelisk ? import ./.obelisk/impl {
     inherit system;
     iosSdkVersion = "13.2";
-
+    inherit (kpkgs) reflex-platform-func;
     # You must accept the Android Software Development Kit License Agreement at
     # https://developer.android.com/studio/terms in order to build Android apps.
     # Uncomment and set this to `true` to indicate your acceptance:
